@@ -7,8 +7,13 @@ import {
   PublisherBanner,
   AdMobRewarded
 } from 'expo';
+import FetchImages from './FetchImages';
 
 export default class HomeScreen extends React.Component {
+  componentDidMount(){
+    url = `http://digiteeshirt.com/android/omo/${this.props.subject}/main.php`;
+  }
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.subject === undefined) {
         //this.props.subject = 'default';
@@ -33,7 +38,7 @@ export default class HomeScreen extends React.Component {
             </Left>
             <Right/>
         </Header>
-        <Content><Text>Home {this.props.subject}</Text></Content>
+        <Content><FetchImages subject={this.props.subject} /></Content>
       
         
         <Footer><AdMobBanner

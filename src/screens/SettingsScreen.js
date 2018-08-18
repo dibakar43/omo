@@ -9,13 +9,13 @@ import {
 } from 'expo';
 
 export default class SettingsScreen extends React.Component {
-  componentDidMount() {
-    console.log('GrandChild did mount.');
-    // Display an interstitial
-AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
-//AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
-  }
+  // componentDidMount() {
+  //   console.log('GrandChild did mount.');
+  //   // Display an interstitial
+  //   AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+  //   //AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+  //   AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+  // }
 
    static navigationOptions = {
     drawerIcon : ({tintColor}) =>(

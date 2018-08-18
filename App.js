@@ -26,7 +26,7 @@ const CustomDrawerComponent = (props) => (
 );
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home:{screen:(props) => <HomeScreen {...props} subject='home-screen'/>},
+  Home:{screen:(props) => <HomeScreen {...props} subject='bca-101'/>},
   Settings:{screen:SettingsScreen},
 },{
   contentComponent : SideMenu,
