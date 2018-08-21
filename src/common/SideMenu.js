@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Icon} from 'native-base';
-import { ScrollView, Text, View, StyleSheet,TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, StyleSheet,TouchableOpacity,Platform,Dimensions } from 'react-native';
 import Bar from 'react-native-bar-collapsible';
 import { NavigationActions } from 'react-navigation';
+import { CardViewWithIcon } from "react-native-simple-card-view";
 import PropTypes from 'prop-types';
 import BCAMenus from './BCAMenus'
 
@@ -15,13 +16,44 @@ class SideMenu extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
+  homeOnPressHandler = () => {
+    this.props.navigation.navigate('home');
+  }
+  
+
   render() {
+    const miniCardStyle = {
+      shadowColor: '#000000',
+      shadowOffsetWidth : 2,
+      shadowOffsetHeight: 2,
+      shadowOpacity: 0.1,
+      hadowRadius: 5,
+      bgColor: '#ffffff',
+      padding: 5,
+      margin: 5,
+      borderRadius      : 3,
+      elevation         : 3,
+      width             : "97%"
+    };
     return (
       <View >
         <ScrollView>
 
           <View>
-          <TouchableOpacity onPress={this.props.navigation.navigate('home')}>
+          <CardViewWithIcon
+            withBackground={ false }
+            androidIcon={ 'logo-github' }
+            iosIcon={ 'logo-github' }
+            iconHeight={ 30 }
+            iconColor={ '#333' }
+            title={ 'GITHUB' }
+            contentFontSize={ 20 }
+            titleFontSize={ 12 }
+            style={ miniCardStyle }
+            content='Nothing'
+            
+          />
+          <TouchableOpacity onPress={this.homeOnPressHandler}>
                 <View style={{flex:1,flexDirection:'row'}}>
                     <Icon name = "home"/><Text style={styles.menuText}>Home</Text>
                 </View>
