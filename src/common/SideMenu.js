@@ -1,46 +1,45 @@
+import React, { Component } from 'react';
+import {Icon} from 'native-base';
+import { ScrollView, Text, View, StyleSheet,TouchableOpacity } from 'react-native';
+import Bar from 'react-native-bar-collapsible';
+import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-
-import {NavigationActions} from 'react-navigation';
-import {ScrollView, Text, View} from 'react-native';
+import BCAMenus from './BCAMenus'
 
 class SideMenu extends Component {
-  navigateToScreen = (route) => () => {
+  navigateToScreen = (route) => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
+    console.log({ route });
     this.props.navigation.dispatch(navigateAction);
   }
 
-  render () {
+  render() {
     return (
       <View >
         <ScrollView>
+
           <View>
-            <Text>
-              BCA 3rd Sem
-            </Text>
-            <View>
-              <Text onPress={this.navigateToScreen('Home')}>
-              Page1
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Text >
-              Section 2
-            </Text>
-            <View >
-              <Text  onPress={this.navigateToScreen('Settings')}>
-                Page2
-              </Text>
-              <Text onPress={this.navigateToScreen('Page3')}>
-                Page3
-              </Text>
-            </View>
+          <TouchableOpacity onPress={this.props.navigation.navigate('home')}>
+                <View style={{flex:1,flexDirection:'row'}}>
+                    <Icon name = "home"/><Text style={styles.menuText}>Home</Text>
+                </View>
+          </TouchableOpacity>
+          <Bar
+              title='BCA'
+              titleStyle={{ color: '#3396FF',fontSize: 15,fontWeight: 'bold' }}
+              style={{ backgroundColor: '#FF5733'}}
+              collapsible={true}
+              showOnStart={false}
+              iconCollapsed='chevron-right'
+              iconOpened='chevron-down'
+              iconSize={15}
+              children={<BCAMenus rt={this.navigateToScreen} />} />
+             
           </View>
         </ScrollView>
-        
+
       </View>
     );
   }
@@ -49,5 +48,26 @@ class SideMenu extends Component {
 SideMenu.propTypes = {
   navigation: PropTypes.object
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2c3e50',
+  },
+  button: {
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+
+  },
+  menuText: {
+    padding: 10,
+    fontSize: 15,
+    fontWeight: 'bold'
+
+  },
+
+});
 
 export default SideMenu;

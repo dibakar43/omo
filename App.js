@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View,  SafeAreaView, ScrollView,Dimensions,Image } from 'react-native';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation';
-import HomeScreen from './src/screens/HomeScreen';
+import MainScreen from './src/screens/MainScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import SideMenu from './src/common/SideMenu';
+import HomeScreen from './src/screens/HomeScreen';
 
 export default class App extends React.Component {
   render() {
@@ -26,8 +27,10 @@ const CustomDrawerComponent = (props) => (
 );
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home:{screen:(props) => <HomeScreen {...props} subject='bca-101'/>},
-  Settings:{screen:SettingsScreen},
+  home:HomeScreen,
+  bca101:{screen:(props) => <MainScreen {...props} subject='bca-101' title='BCA-101'/>},
+  bca102:{screen:(props) => <MainScreen {...props} subject='bca-102' title='BCA-102'/>},
+  bca103:{screen:(props) => <MainScreen {...props} subject='bca-103' title='BCA-103'/>},
 },{
   contentComponent : SideMenu,
   contentOptions : {
