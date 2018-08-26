@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Icon} from 'native-base';
-import { ScrollView, Text, View, StyleSheet,TouchableOpacity,Platform,Dimensions,Image } from 'react-native';
+import { ScrollView, Text, View, StyleSheet,TouchableOpacity,Platform,Dimensions,Image,Share } from 'react-native';
 import Bar from 'react-native-bar-collapsible';
 import { NavigationActions } from 'react-navigation';
 
@@ -23,46 +23,56 @@ class SideMenu extends Component {
   homeOnPressHandler = () => {
     this.props.navigation.navigate('home');
   }
+
+  shareOnPressHandler = () => {
+      Share.share({
+        message: 'http://codingmiles.com',
+        title: 'Best title ever!',
+        url: 'http://codingmiles.com'
+      }, {
+        dialogTitle: 'Share with',
+        excludedActivityTypes: [
+          'com.apple.UIKit.activity.PostToTwitter',
+          'com.apple.uikit.activity.mail'
+        ],
+        tintColor: 'green'
+      })
+      .then(this._showResult)
+      .catch(err => console.log(err))
+    }
+  
   
 
   render() {
-    const miniCardStyle = {
-      shadowColor: '#000000',
-      shadowOffsetWidth : 2,
-      shadowOffsetHeight: 2,
-      shadowOpacity: 0.1,
-      hadowRadius: 5,
-      bgColor: '#ffffff',
-      padding: 5,
-      margin: 5,
-      borderRadius      : 3,
-      elevation         : 3,
-      width             : "97%"
-    };
     return (
       <View >
         <ScrollView>
 
           <View>
-          <Image source={drawerCover} style={styles.drawerCover} />
-          <Image square style={styles.drawerImage} source={drawerImage} />
+            <Image source={drawerCover} style={styles.drawerCover} />
+            <Image square style={styles.drawerImage} source={drawerImage} />
 
-          <TouchableOpacity onPress={this.homeOnPressHandler}>
-                <View style={{flex:1,flexDirection:'row',padding:5}}>
-                    <Icon name = "home"/><Text style={styles.menuText}>Home</Text>
-                </View>
-          </TouchableOpacity>
-          <Bar
-              title='BCA'
-              titleStyle={{ color: '#7C0586',fontSize: 15,fontWeight: 'bold' }}
-              style={{ backgroundColor: '#FF5733'}}
-              collapsible={true}
-              showOnStart={false}
-              iconCollapsed='chevron-right'
-              iconOpened='chevron-down'
-              iconSize={15}
-              children={<BCAMenus rt={this.navigateToScreen} />} />
-             
+            <TouchableOpacity onPress={this.homeOnPressHandler}>
+                  <View style={{flex:1,flexDirection:'row',padding:5}}>
+                      <Icon name = "home"/><Text style={styles.menuText}>Home</Text>
+                  </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.shareOnPressHandler}>
+                  <View style={{flex:1,flexDirection:'row',padding:5}}>
+                      <Icon name = "share"/><Text style={styles.menuText}>Share</Text>
+                  </View>
+            </TouchableOpacity>
+            <Bar
+                title='BCA'
+                titleStyle={{ color: '#fff',fontSize: 15,fontWeight: 'bold' }}
+                style={{ backgroundColor: '#7C0586'}}
+                collapsible={true}
+                showOnStart={false}
+                iconCollapsed='chevron-right'
+                iconOpened='chevron-down'
+                iconSize={15}
+                children={<BCAMenus rt={this.navigateToScreen} />} />
+              
           </View>
         </ScrollView>
 
@@ -91,8 +101,8 @@ const styles = StyleSheet.create({
 
   },
   menuText: {
-    padding: 10,
-    fontSize: 15,
+    paddingLeft: 10,
+    fontSize: 14,
     fontWeight: 'bold'
 
   },

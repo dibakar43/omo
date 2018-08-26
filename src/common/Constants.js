@@ -27,7 +27,7 @@
         subName: 'Mathematics'
       },
       {
-          id: 'bca101',
+          id: 'bca104',
           subCode: 'BCA - 104',
           subName: 'PC Software'
       },

@@ -5,6 +5,7 @@ import MainScreen from './src/screens/MainScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import SideMenu from './src/common/SideMenu';
 import HomeScreen from './src/screens/HomeScreen';
+import * as constants from './src/common/Constants'
 
 export default class App extends React.Component {
   render() {
@@ -26,11 +27,16 @@ const CustomDrawerComponent = (props) => (
   </SafeAreaView>
 );
 
+
 const AppDrawerNavigator = createDrawerNavigator({
   home:HomeScreen,
-  bca101:{screen:(props) => <MainScreen {...props} subject='bca-101' title='BCA-101'/>},
-  bca102:{screen:(props) => <MainScreen {...props} subject='bca-102' title='BCA-102'/>},
-  bca103:{screen:(props) => <MainScreen {...props} subject='bca-103' title='BCA-103'/>},
+  bca101:{screen:(props) => <MainScreen {...props} subject='bca-101' title='BCA - 101'/>},
+  bca102:{screen:(props) => <MainScreen {...props} subject='bca-102' title='BCA - 102'/>},
+  bca103:{screen:(props) => <MainScreen {...props} subject='bca-103' title='BCA - 103'/>},
+  bm101:{screen:(props) => <MainScreen {...props} subject='bm-101' title='BM - 101'/>},
+  bca201:{screen:(props) => <MainScreen {...props} subject='bca-201' title='BCA - 201'/>},
+  bca202:{screen:(props) => <MainScreen {...props} subject='bca-202' title='BCA - 202'/>},
+  
 },{
   contentComponent : SideMenu,
   contentOptions : {
