@@ -4,26 +4,48 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import {Icon} from 'native-base';
 import * as constants from './Constants';
 
-
-// create a component
-class BCAMenus extends Component {
-     menuList = constants.menus.map((item,index) =>{
-         return(
-            <TouchableOpacity key={index} style={styles.button} onPress={this.props.rt.bind(this,item.id)}>
-                <View style={{flex:1,flexDirection:'row'}}>
-                    <Icon name = "star"/>
-                    <View style={{flex:1,flexDirection:'column'}}>
-                        <Text style={styles.menuText2}>{item.subName}</Text>
-                        <Text style={styles.menuText1}>{item.subCode}</Text>
-                    </View>
+class MenuList extends Component {
+    constructor(props) {
+        super(props);
+      }
+      menuList= this.props.items.map((item,index) => {
+        return(
+        <TouchableOpacity key={index} style={styles.button} onPress={this.props.rt.bind(this,item.id)}>
+            <View style={{flex:1,flexDirection:'row'}}>
+                <Icon name = "star"/>
+                <View style={{flex:1,flexDirection:'column'}}>
+                    <Text style={styles.menuText2}>{item.subName}</Text>
+                    <Text style={styles.menuText1}>{item.subCode}</Text>
                 </View>
-            </TouchableOpacity>
-         );
-     });
-    render() {
+            </View>
+        </TouchableOpacity>
+        );
+    });
+      render(){
         return (
             <View>
                 {this.menuList}
+            </View>
+        );
+      }
+}
+
+class BCAMenus extends Component {
+    constructor(props) {
+        super(props);
+      }
+      
+     
+    render() {
+        menuGroup = this.props.menuGroup;
+
+        group=constants.menus.filter(function(item){
+            return item.groupId === menuGroup;
+        });
+        
+        return (
+            <View style={{flex:1}}>
+                <MenuList items={group[0].items} rt={this.props.rt} />
             </View>
         );
     }

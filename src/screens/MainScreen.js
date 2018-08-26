@@ -9,10 +9,15 @@ import {
 } from 'expo';
 import FetchImages from './FetchImages';
 import * as constants from '../common/Constants';
-
+ 
 export default class MainScreen extends React.Component {
+  
   componentDidMount() {
     url = `http://digiteeshirt.com/android/omo/${this.props.subject}/main.php`;
+    
+    // AdMobInterstitial.setAdUnitID(constants.app.InterstitialAdUnitID);
+    // //AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    // AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +48,7 @@ export default class MainScreen extends React.Component {
 
         <Footer style={{ backgroundColor: constants.app.color }}><AdMobBanner
           bannerSize="smartBannerPortrait"
-          adUnitID="ca-app-pub-3940256099942544/6300978111"
+          adUnitID={constants.app.BannerAdUnitID}
           testDeviceID="EMULATOR"
           didFailToReceiveAdWithError={this.bannerError} /></Footer>
       </View>

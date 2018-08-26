@@ -19,7 +19,24 @@ class SideMenu extends Component {
     console.log({ route });
     this.props.navigation.dispatch(navigateAction);
   }
-
+  
+  populateMenuHierarchay = () =>{
+    return(
+      <Bar
+        key={index}
+        title={item.title}
+        titleStyle={{ color: '#fff',fontSize: 15,fontWeight: 'bold' }}
+        style={{ backgroundColor: constants.app.color}}
+        collapsible={true}
+        showOnStart={false}
+        iconCollapsed='chevron-right'
+        iconOpened='chevron-down'
+        iconSize={15}
+        children={<BCAMenus rt={this.navigateToScreen} menuGroup={item.groupId} />} />
+    );
+  }
+  
+  
   homeOnPressHandler = () => {
     this.props.navigation.navigate('home');
   }
@@ -40,10 +57,29 @@ class SideMenu extends Component {
       .then(this._showResult)
       .catch(err => console.log(err))
     }
-  
+
+    collapsibleMenu =  constants.menus.map((item,index)=>{
+      //console.log('inside collapsibleMenu');
+     //console.log(item.groupId);
+      return(
+        <Bar
+          key={index}
+          title={item.title}
+          titleStyle={{ color: '#fff',fontSize: 15,fontWeight: 'bold' }}
+          style={{ backgroundColor: constants.app.color}}
+          collapsible={true}
+          showOnStart={false}
+          iconCollapsed='chevron-right'
+          iconOpened='chevron-down'
+          iconSize={15}
+          children={<BCAMenus rt={this.navigateToScreen} menuGroup={item.groupId} />} />
+      );
+    });
   
 
   render() {
+    
+    //console.log(collapsibleMenu);
     return (
       <View >
         <ScrollView>
@@ -62,16 +98,9 @@ class SideMenu extends Component {
                       <Icon name = "share"/><Text style={styles.menuText}>Share</Text>
                   </View>
             </TouchableOpacity>
-            <Bar
-                title='BCA'
-                titleStyle={{ color: '#fff',fontSize: 15,fontWeight: 'bold' }}
-                style={{ backgroundColor: '#7C0586'}}
-                collapsible={true}
-                showOnStart={false}
-                iconCollapsed='chevron-right'
-                iconOpened='chevron-down'
-                iconSize={15}
-                children={<BCAMenus rt={this.navigateToScreen} />} />
+           {this.collapsibleMenu}
+            
+            
               
           </View>
         </ScrollView>

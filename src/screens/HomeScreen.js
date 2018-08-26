@@ -81,7 +81,7 @@ export default class HomeScreen extends React.Component {
       </Content>
         <Footer style={{ backgroundColor: constants.app.color }}><AdMobBanner
           bannerSize="smartBannerPortrait"
-          adUnitID="ca-app-pub-3940256099942544/6300978111"
+          adUnitID={constants.app.BannerAdUnitID}
           testDeviceID="EMULATOR"
           didFailToReceiveAdWithError={this.bannerError} /></Footer>
       </View>
