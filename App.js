@@ -34,14 +34,14 @@ const AppDrawerNavigator = createDrawerNavigator({
 },{
   contentComponent : SideMenu,
   contentOptions : {
-    activeTintColor : 'blue'
+    activeTintColor : 'red'
   }
 });
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#7C0586',
     alignItems: 'center',
     justifyContent: 'center',
   },

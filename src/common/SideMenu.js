@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import {Icon} from 'native-base';
-import { ScrollView, Text, View, StyleSheet,TouchableOpacity,Platform,Dimensions } from 'react-native';
+import { ScrollView, Text, View, StyleSheet,TouchableOpacity,Platform,Dimensions,Image } from 'react-native';
 import Bar from 'react-native-bar-collapsible';
 import { NavigationActions } from 'react-navigation';
-import { CardViewWithIcon } from "react-native-simple-card-view";
+
 import PropTypes from 'prop-types';
 import BCAMenus from './BCAMenus'
+import * as constants from './Constants'
+
+const drawerCover = require("../assets/drawer-cover.png");
+const drawerImage = require("../assets/logo-kitchen-sink.png");
 
 class SideMenu extends Component {
   navigateToScreen = (route) => {
@@ -40,27 +44,17 @@ class SideMenu extends Component {
         <ScrollView>
 
           <View>
-          <CardViewWithIcon
-            withBackground={ false }
-            androidIcon={ 'logo-github' }
-            iosIcon={ 'logo-github' }
-            iconHeight={ 30 }
-            iconColor={ '#333' }
-            title={ 'GITHUB' }
-            contentFontSize={ 20 }
-            titleFontSize={ 12 }
-            style={ miniCardStyle }
-            content='Nothing'
-            
-          />
+          <Image source={drawerCover} style={styles.drawerCover} />
+          <Image square style={styles.drawerImage} source={drawerImage} />
+
           <TouchableOpacity onPress={this.homeOnPressHandler}>
-                <View style={{flex:1,flexDirection:'row'}}>
+                <View style={{flex:1,flexDirection:'row',padding:5}}>
                     <Icon name = "home"/><Text style={styles.menuText}>Home</Text>
                 </View>
           </TouchableOpacity>
           <Bar
               title='BCA'
-              titleStyle={{ color: '#3396FF',fontSize: 15,fontWeight: 'bold' }}
+              titleStyle={{ color: '#7C0586',fontSize: 15,fontWeight: 'bold' }}
               style={{ backgroundColor: '#FF5733'}}
               collapsible={true}
               showOnStart={false}
@@ -81,6 +75,9 @@ SideMenu.propTypes = {
   navigation: PropTypes.object
 };
 
+const deviceHeight = Dimensions.get("window").height;
+const deviceWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -98,6 +95,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold'
 
+  },
+  drawerCover: {
+    alignSelf: "stretch",
+    height: deviceHeight / 3.5,
+    width: null,
+    position: "relative",
+    marginBottom: 10
+  },
+  drawerImage: {
+    position: "absolute",
+    left: Platform.OS === "android" ? deviceWidth / 10 : deviceWidth / 9,
+    top: Platform.OS === "android" ? deviceHeight / 13 : deviceHeight / 12,
+    width: 210,
+    height: 75,
+    resizeMode: "cover"
   },
 
 });

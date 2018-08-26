@@ -8,6 +8,7 @@ import {
   AdMobRewarded
 } from 'expo';
 import FetchImages from './FetchImages';
+import * as constants from '../common/Constants';
 
 export default class MainScreen extends React.Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ export default class MainScreen extends React.Component {
 
 
       <View style={styles.container}>
-        <Header>
+        <Header style={{ backgroundColor: constants.app.color }}>
           <View style={{ flex: 1, flexDirection: 'row', width: '100%' }}>
             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} style={{ padding: 10, color: 'white' }} />
             <Text style={styles.titleText}>{this.props.title}</Text>
@@ -40,7 +41,7 @@ export default class MainScreen extends React.Component {
         <Content><FetchImages subject={this.props.subject} /></Content>
 
 
-        <Footer><AdMobBanner
+        <Footer style={{ backgroundColor: constants.app.color }}><AdMobBanner
           bannerSize="smartBannerPortrait"
           adUnitID="ca-app-pub-3940256099942544/6300978111"
           testDeviceID="EMULATOR"

@@ -2,31 +2,28 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import {Icon} from 'native-base';
+import * as constants from './Constants';
 
 
 // create a component
 class BCAMenus extends Component {
-    
-
+     menuList = constants.menus.map((item,index) =>{
+         return(
+            <TouchableOpacity key={index} style={styles.button} onPress={this.props.rt.bind(this,item.id)}>
+                <View style={{flex:1,flexDirection:'row'}}>
+                    <Icon name = "star"/>
+                    <View style={{flex:1,flexDirection:'column'}}>
+                        <Text style={styles.menuText2}>{item.subName}</Text>
+                        <Text style={styles.menuText1}>{item.subCode}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+         );
+     });
     render() {
         return (
             <View>
-                <TouchableOpacity style={styles.button} onPress={this.props.rt.bind(this,'bca101')}>
-                <View style={{flex:1,flexDirection:'row'}}>
-                    <Icon name = "home"/><Text style={styles.menuText}>BCA-101</Text>
-                </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={this.props.rt.bind(this,'bca102')}>
-                <View style={{flex:1,flexDirection:'row'}}>
-                    <Icon name = "home"/><Text style={styles.menuText}>BCA-102</Text>
-                </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={this.props.rt.bind(this,'bca103')}>
-                <View style={{flex:1,flexDirection:'row'}}>
-                    <Icon name = "home"/><Text style={styles.menuText}>BCA-103</Text>
-                </View>
-                </TouchableOpacity>
-               
+                {this.menuList}
             </View>
         );
     }
@@ -45,10 +42,13 @@ const styles = StyleSheet.create({
         padding: 10,
         
     },
-    menuText: {
-        padding: 10,
-        fontSize: 15,
-        
+    menuText1: {
+        paddingLeft: 10,
+        fontSize: 14,  
+    },
+    menuText2: {
+        paddingLeft : 10,
+        fontSize: 11,  
     },
 
 });
